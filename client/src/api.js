@@ -2,7 +2,9 @@ export const getAllBooks = async () => {
   const response = await fetch(`${process.env.REACT_APP_API_SERVER}/books`);
 
   if (!response.ok) {
-    throw new Error("Something went wrong.");
+    const errorResponse = await response.json();
+    const errorMessage = errorResponse.message || "Something went wrong.";
+    throw new Error(errorMessage);
   }
   
   return response.json();
