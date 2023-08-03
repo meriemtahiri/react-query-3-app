@@ -1,6 +1,4 @@
 const express = require("express");
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUI = require("swagger-ui-express");
 const cors = require("cors");
 const morgan = require("morgan");
 const low = require("lowdb");
@@ -39,12 +37,6 @@ const options = {
 	apis: ["./routes/*.js"],
 };
 
-const specs = swaggerJsDoc(options);
-app.use(
-	"/api-docs",
-	swaggerUI.serve,
-	swaggerUI.setup(specs, { explorer: true })
-);
 
 app.use("/books", booksRouter);
 
